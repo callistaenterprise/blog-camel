@@ -15,13 +15,13 @@ import org.springframework.test.annotation.DirtiesContext;
 @SpringBootTest(classes = CamelBlogExamplesApplication.class)
 @CamelSpringBootTest
 @AutoConfiguration
-@MockEndpoints("activemq:bar")
+@MockEndpoints
 public class ActiveMQExampleRouteMockTest {
 
     @Autowired
     private CamelContext camelContext;
 
-    @EndpointInject("mock:activemq:foo")
+    @EndpointInject("mock:activemq:bar")
     private MockEndpoint mockFooEndpoint;
 
     @EndpointInject("mock:activemq:bar")
@@ -34,6 +34,9 @@ public class ActiveMQExampleRouteMockTest {
         String messageBody = "{\"message\":\"Hello, this is a json message!\"}";
 
         // Set expectations on the mock endpoint
+        mockFooEndpoint.expectedMessageCount(1);
+        mockFooEndpoint.expectedBodiesReceived(messageBody);
+
         mockBarEndpoint.expectedMessageCount(1);
         mockBarEndpoint.expectedBodiesReceived("BAR: " + messageBody);
 
@@ -43,6 +46,7 @@ public class ActiveMQExampleRouteMockTest {
 
         // Assert
         mockBarEndpoint.assertIsSatisfied();
+        mockFooEndpoint.assertIsSatisfied();
     }
 
 }
