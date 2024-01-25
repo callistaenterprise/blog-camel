@@ -18,7 +18,7 @@ public class ActiveMQExampleRoute extends RouteBuilder {
                 .to("activemq:bar").id("out.bar");
 
         // Random text sender.
-        randomMessageSender();
+        // randomMessageSender();
 
     }
 
