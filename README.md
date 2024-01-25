@@ -9,6 +9,11 @@ The code is build in several stages and the _master_ branch holds the whole comp
 
 ### 0. Run with Random Messages 
 
+Start the application usiing `mvn spring-boot:run`.
+
+Notice that random messages, plain and json, are being sent and logged.
+You can also go to http://localhost:8080/actuator/hawtio/camel/contexts and see the traffic (but it is a bit buggy for Spring 3.x).
+
 ### 1. Mock the endpoints
 
 ### 2. Turn off the internal ActiveMQ
