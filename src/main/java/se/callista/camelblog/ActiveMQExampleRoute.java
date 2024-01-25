@@ -8,9 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ActiveMQExampleRoute extends RouteBuilder {
 
-    // JacksonDataFormat jsonDataFormat = new
-    // JacksonDataFormat(MyMessageClass.class);
-
     @Override
     public void configure() throws Exception {
 
@@ -21,7 +18,7 @@ public class ActiveMQExampleRoute extends RouteBuilder {
                 .to("activemq:bar").id("out.bar");
 
         // Random text sender.
-        // randomMessageSender();
+        randomMessageSender();
 
     }
 
